@@ -9,6 +9,11 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include ert/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/subdir.mk
+-include Middlewares/Third_Party/FreeRTOS/Source/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
@@ -60,8 +65,8 @@ all: main-build
 main-build: FakeSensorBoard.elf secondary-outputs
 
 # Tool invocations
-FakeSensorBoard.elf FakeSensorBoard.map: $(OBJS) $(USER_OBJS) C:\Users\totom\STM32CubeIDE\workspace_1.9.0\wildhorn-av-testing\FakeSensorBoard\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "FakeSensorBoard.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\totom\STM32CubeIDE\workspace_1.9.0\wildhorn-av-testing\FakeSensorBoard\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FakeSensorBoard.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+FakeSensorBoard.elf FakeSensorBoard.map: $(OBJS) $(USER_OBJS) C:\Users\totom\STM32CubeIDE\workspace_1.9.0\wildhorn_sensor_simulator\FakeSensorBoard\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "FakeSensorBoard.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\totom\STM32CubeIDE\workspace_1.9.0\wildhorn_sensor_simulator\FakeSensorBoard\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FakeSensorBoard.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
